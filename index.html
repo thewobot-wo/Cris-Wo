@@ -44,6 +44,31 @@
             animation: none;
         }
 
+        .name.mobile-glow-fade {
+            animation: glowFadeOut 2s ease-out forwards;
+        }
+
+        @keyframes glowFadeOut {
+            0% {
+                color: #ffffff;
+                text-shadow: 
+                    0 0 10px rgba(255, 255, 255, 0.5),
+                    0 0 20px rgba(255, 255, 255, 0.3),
+                    0 0 30px rgba(255, 255, 255, 0.2);
+            }
+            100% {
+                color: #888888;
+                text-shadow: none;
+            }
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .name:hover {
+                animation: none;
+            }
+        }
+
         .particle {
             position: absolute;
             font-size: 12px;
@@ -103,6 +128,11 @@
 
     <script>
         document.getElementById('name').addEventListener('click', function(e) {
+            const nameElement = this;
+            
+            // Check if mobile
+            const isMobile = window.innerWidth <= 768;
+            
             // Create musical symbol particles
             const rect = this.getBoundingClientRect();
             
@@ -112,6 +142,12 @@
                 '𝄞', '𝄞', '𝄞', // 3 treble clefs
                 '𝄢', '𝄢' // 2 bass clefs
             ];
+            
+            // On mobile, start with glow effect
+            if (isMobile) {
+                nameElement.style.color = '#ffffff';
+                nameElement.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2)';
+            }
             
             for (let i = 0; i < symbols.length; i++) {
                 const particle = document.createElement('div');
@@ -137,6 +173,16 @@
                         particle.parentNode.removeChild(particle);
                     }
                 }, 2000);
+            }
+            
+            // On mobile, fade out glow as music disappears
+            if (isMobile) {
+                setTimeout(() => {
+                    nameElement.classList.add('mobile-glow-fade');
+                    setTimeout(() => {
+                        nameElement.classList.remove('mobile-glow-fade');
+                    }, 2000);
+                }, 100);
             }
         });
     </script>
