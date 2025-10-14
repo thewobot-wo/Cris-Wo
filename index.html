@@ -56,11 +56,11 @@
         @keyframes floatUp {
             0% {
                 opacity: 1;
-                transform: translateY(0) translateX(0) rotate(0deg);
+                transform: translateY(0) translateX(0);
             }
             100% {
                 opacity: 0;
-                transform: translateY(-100px) translateX(var(--drift, 0px)) rotate(360deg);
+                transform: translateY(-100px) translateX(var(--drift, 0px));
             }
         }
 
@@ -112,15 +112,15 @@
                 particle.className = 'particle';
                 particle.innerHTML = '♫';
                 
-                // Random position around the text
-                const x = rect.left + (rect.width / 2) + (Math.random() - 0.5) * 100;
-                const y = rect.top + (rect.height / 2) + (Math.random() - 0.5) * 20;
+                // Random position around the text with better spread
+                const x = rect.left + (rect.width / 2) + (Math.random() - 0.5) * 150;
+                const y = rect.top + (rect.height / 2) + (Math.random() - 0.5) * 40;
                 
                 particle.style.left = x + 'px';
                 particle.style.top = y + 'px';
                 
-                // Random horizontal drift
-                const drift = (Math.random() - 0.5) * 50;
+                // Random horizontal drift with better spread
+                const drift = (Math.random() - 0.5) * 80;
                 particle.style.setProperty('--drift', drift + 'px');
                 
                 document.body.appendChild(particle);
