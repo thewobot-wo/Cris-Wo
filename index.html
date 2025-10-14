@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cris Wo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 200;
+            color: #ffffff;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                transparent 40%,
+                rgba(255, 255, 255, 0.8) 50%,
+                transparent 60%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            background-position: -200% 0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .name:hover {
+            animation: shimmer 2.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            50% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Fallback for browsers that don't support background-clip: text */
+        @supports not (background-clip: text) {
+            .name {
+                color: #ffffff;
+                background: none;
+                -webkit-text-fill-color: initial;
+            }
+            
+            .name:hover {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="name">Cris Wo</div>
+</body>
+</html>
