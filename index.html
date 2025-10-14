@@ -50,15 +50,15 @@
 
         @keyframes glowFadeOut {
             0% {
-                color: #ffffff;
+                color: #ffffff !important;
                 text-shadow: 
                     0 0 10px rgba(255, 255, 255, 0.5),
                     0 0 20px rgba(255, 255, 255, 0.3),
-                    0 0 30px rgba(255, 255, 255, 0.2);
+                    0 0 30px rgba(255, 255, 255, 0.2) !important;
             }
             100% {
-                color: #888888;
-                text-shadow: none;
+                color: #888888 !important;
+                text-shadow: none !important;
             }
         }
 
@@ -181,6 +181,9 @@
                     nameElement.classList.add('mobile-glow-fade');
                     setTimeout(() => {
                         nameElement.classList.remove('mobile-glow-fade');
+                        // Ensure styles are reset after animation
+                        nameElement.style.color = '';
+                        nameElement.style.textShadow = '';
                     }, 2000);
                 }, 100);
             }
