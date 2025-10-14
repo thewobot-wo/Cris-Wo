@@ -103,15 +103,20 @@
 
     <script>
         document.getElementById('name').addEventListener('click', function(e) {
-            // Create multiple eighth note particles
-            const particleCount = 8;
+            // Create musical symbol particles
             const rect = this.getBoundingClientRect();
             
-            for (let i = 0; i < particleCount; i++) {
+            // Define all musical symbols
+            const symbols = [
+                '♫', '♪', '♫', '♪', '♫', '♪', '♫', '♪', // 8 eighth notes (4 single, 4 double)
+                '𝄞', '𝄞', '𝄞', // 3 treble clefs
+                '𝄢', '𝄢' // 2 bass clefs
+            ];
+            
+            for (let i = 0; i < symbols.length; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                // Alternate between single and double eighth notes
-                particle.innerHTML = i % 2 === 0 ? '♫' : '♪';
+                particle.innerHTML = symbols[i];
                 
                 // Random position around the text with better spread
                 const x = rect.left + (rect.width / 2) + (Math.random() - 0.5) * 150;
