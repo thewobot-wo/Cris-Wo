@@ -19,3 +19,7 @@ Simply open `index.html` in any modern web browser to view the page.
 - HTML5
 - CSS3 (with animations and gradients)
 - Modern web standards
+
+## Development
+
+- **Commit Rule**: Any changes to the site should be committed immediately after making them
