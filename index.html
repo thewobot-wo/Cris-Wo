@@ -23,15 +23,16 @@
         .name {
             font-size: 2rem;
             font-weight: 200;
-            color: #ffffff;
+            color: #888888;
             text-align: center;
             cursor: pointer;
             position: relative;
+            letter-spacing: 0.5em;
             background: linear-gradient(
                 90deg,
                 transparent 0%,
                 transparent 40%,
-                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0.9) 50%,
                 transparent 60%,
                 transparent 100%
             );
@@ -62,13 +63,14 @@
         /* Fallback for browsers that don't support background-clip: text */
         @supports not (background-clip: text) {
             .name {
-                color: #ffffff;
+                color: #888888;
                 background: none;
                 -webkit-text-fill-color: initial;
             }
             
             .name:hover {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                color: #ffffff;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
             }
         }
     </style>
