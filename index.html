@@ -44,23 +44,6 @@
             animation: none;
         }
 
-        .name.mobile-glow-fade {
-            animation: glowFadeOut 2s ease-out forwards;
-        }
-
-        @keyframes glowFadeOut {
-            0% {
-                color: #ffffff !important;
-                text-shadow: 
-                    0 0 10px rgba(255, 255, 255, 0.5),
-                    0 0 20px rgba(255, 255, 255, 0.3),
-                    0 0 30px rgba(255, 255, 255, 0.2) !important;
-            }
-            100% {
-                color: #888888 !important;
-                text-shadow: none !important;
-            }
-        }
 
         /* Mobile-specific styles */
         @media (max-width: 768px) {
@@ -177,14 +160,40 @@
             
             // On mobile, fade out glow as music disappears
             if (isMobile) {
+                // Start fade animation after a brief delay
                 setTimeout(() => {
-                    nameElement.classList.add('mobile-glow-fade');
-                    setTimeout(() => {
-                        nameElement.classList.remove('mobile-glow-fade');
-                        // Ensure styles are reset after animation
-                        nameElement.style.color = '';
-                        nameElement.style.textShadow = '';
-                    }, 2000);
+                    const startTime = Date.now();
+                    const duration = 2000; // 2 seconds
+                    
+                    const fadeOut = () => {
+                        const elapsed = Date.now() - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Ease-out function
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        
+                        // Fade from white to light gray
+                        const colorProgress = 1 - easeOut;
+                        const r = Math.round(136 + (255 - 136) * colorProgress);
+                        const g = Math.round(136 + (255 - 136) * colorProgress);
+                        const b = Math.round(136 + (255 - 136) * colorProgress);
+                        
+                        nameElement.style.color = `rgb(${r}, ${g}, ${b})`;
+                        
+                        // Fade out text shadow
+                        const shadowOpacity = 0.5 * (1 - easeOut);
+                        nameElement.style.textShadow = `0 0 10px rgba(255, 255, 255, ${shadowOpacity}), 0 0 20px rgba(255, 255, 255, ${shadowOpacity * 0.6}), 0 0 30px rgba(255, 255, 255, ${shadowOpacity * 0.4})`;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(fadeOut);
+                        } else {
+                            // Ensure final state
+                            nameElement.style.color = '#888888';
+                            nameElement.style.textShadow = 'none';
+                        }
+                    };
+                    
+                    requestAnimationFrame(fadeOut);
                 }, 100);
             }
         });
