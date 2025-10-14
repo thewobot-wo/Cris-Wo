@@ -28,6 +28,10 @@
             cursor: pointer;
             position: relative;
             letter-spacing: 0.5em;
+            transition: all 0.3s ease;
+        }
+
+        .name:hover {
             background: linear-gradient(
                 90deg,
                 transparent 0%,
@@ -41,10 +45,6 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .name:hover {
             animation: shimmer 2.5s ease-in-out;
         }
 
