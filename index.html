@@ -44,6 +44,22 @@
             animation: none;
         }
 
+        .name.flash {
+            animation: flashEffect 0.3s ease-out;
+        }
+
+        @keyframes flashEffect {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
 
         /* Mobile-specific styles */
         @media (max-width: 768px) {
@@ -112,6 +128,12 @@
     <script>
         document.getElementById('name').addEventListener('click', function(e) {
             const nameElement = this;
+            
+            // Add flash effect immediately on click
+            nameElement.classList.add('flash');
+            setTimeout(() => {
+                nameElement.classList.remove('flash');
+            }, 300);
             
             // Check if mobile
             const isMobile = window.innerWidth <= 768;
