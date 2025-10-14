@@ -110,7 +110,8 @@
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                particle.innerHTML = '♫';
+                // Alternate between single and double eighth notes
+                particle.innerHTML = i % 2 === 0 ? '♫' : '♪';
                 
                 // Random position around the text with better spread
                 const x = rect.left + (rect.width / 2) + (Math.random() - 0.5) * 150;
