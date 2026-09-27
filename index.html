@@ -77,26 +77,6 @@
             }
         }
 
-        .particle {
-            position: absolute;
-            font-size: 12px;
-            color: #ffffff;
-            pointer-events: none;
-            z-index: 1000;
-            animation: floatUp 2s ease-out forwards;
-        }
-
-        @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0) translateX(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100px) translateX(var(--drift, 0px));
-            }
-        }
-
         @keyframes glow {
             0% {
                 text-shadow: 
@@ -147,49 +127,13 @@
             // Check if mobile
             const isMobile = window.innerWidth <= 768;
             
-            // Create musical symbol particles
-            const rect = this.getBoundingClientRect();
-            
-            // Define all musical symbols
-            const symbols = [
-                '♫', '♪', '♫', '♪', '♫', '♪', '♫', '♪', // 8 eighth notes (4 single, 4 double)
-                '𝄞', '𝄞', '𝄞', // 3 treble clefs
-                '𝄢', '𝄢' // 2 bass clefs
-            ];
-            
             // On mobile, start with glow effect
             if (isMobile) {
                 nameElement.style.color = '#ffffff';
                 nameElement.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2)';
             }
             
-            for (let i = 0; i < symbols.length; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.innerHTML = symbols[i];
-                
-                // Random position around the text with better spread
-                const x = rect.left + (rect.width / 2) + (Math.random() - 0.5) * 150;
-                const y = rect.top + (rect.height / 2) + (Math.random() - 0.5) * 40;
-                
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                
-                // Random horizontal drift with better spread
-                const drift = (Math.random() - 0.5) * 80;
-                particle.style.setProperty('--drift', drift + 'px');
-                
-                document.body.appendChild(particle);
-                
-                // Remove particle after animation
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }, 2000);
-            }
-            
-            // On mobile, fade out glow as music disappears
+            // On mobile, fade out glow
             if (isMobile) {
                 // Start fade animation after a brief delay
                 setTimeout(() => {
