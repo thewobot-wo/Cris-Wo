@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/playart", "destination": "https://play-art.vercel.app/playart" },
+    { "source": "/playart/:path*", "destination": "https://play-art.vercel.app/playart/:path*" }
+  ]
+}
